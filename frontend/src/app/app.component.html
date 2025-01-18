@@ -1,62 +1,52 @@
-<mat-drawer-container class="sidebar-container">
+<div class="layout-container">
+  <!-- Toolbar -->
+  <mat-toolbar class="toolbar">
+    <button mat-icon-button (click)="toggleSidebar()">
+      <i class="las la-bars"></i>
+    </button>
+    <span class="toolbar-title"><img src="logo-retangular.svg" alt="Logo" class="logo" /></span>
+    <span class="spacer"></span>
+    <button mat-icon-button>
+      <i class="las la-search"></i>
+    </button>
+    <button mat-icon-button>
+      <i class="las la-bell"></i>
+    </button>
+    <button mat-icon-button>
+      <i class="las la-user"></i>
+    </button>
+  </mat-toolbar>
 
-  <!-- Sidebar -->
-  <mat-drawer #drawer mode="side" [opened]="isSidebarOpen">
-    <div class="sidebar-header">
-      <button mat-icon-button (click)="toggleSidebar()">
-        @if (isSidebarOpen) {
-          <i class="las la-chevron-left"></i>
-        } @else {
-          <i class="las la-bars"></i>
-        }
-      </button>
+  <mat-drawer-container class="main-container">
+    <!-- Sidebar -->
+    <mat-drawer #drawer mode="side" [opened]="isSidebarOpen" class="sidebar">
       @if (isSidebarOpen) {
-        <h3><img src="logo-retangular.svg" alt="Logo" class="logo" /></h3>
-      }
-    </div>
-    @if (isSidebarOpen) {
-      <ul class="menu-list">
-        <li class="menu-item">
+        <ul class="menu-list">
           <a routerLink="/" routerLinkActive="active-link" class="menu-link">
-            <i class="las la-tachometer-alt"></i> Dashboard
+            <li class="menu-item">
+              <i class="las la-tachometer-alt"></i> Dashboard
+            </li>
           </a>
-        </li>
-        <li class="menu-item">
           <a routerLink="/orders" routerLinkActive="active-link" class="menu-link">
-            <i class="las la-box"></i> Orders
+            <li class="menu-item">
+              <i class="las la-box"></i> Orders
+            </li>
           </a>
-        </li>
-        <li class="menu-item">
           <a routerLink="/settings" routerLinkActive="active-link" class="menu-link">
-            <i class="las la-cog"></i> Settings
+            <li class="menu-item">
+              <i class="las la-cog"></i> Settings
+            </li>
           </a>
-        </li>
-      </ul>      
-    }
-  </mat-drawer>
+        </ul>      
+      }
+    </mat-drawer>
 
-  <!-- Main Content -->
-  <mat-drawer-content>
+    <!-- Main Content -->
+    <mat-drawer-content>
+      <div class="main-content">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-drawer-content>
+  </mat-drawer-container>
 
-    <mat-toolbar color="primary">
-      <button mat-icon-button (click)="toggleSidebar()">
-        <i class="las la-bars"></i>
-      </button>
-      <span class="toolbar-title">My App</span>
-      <span class="spacer"></span>
-      <button mat-icon-button>
-        <i class="las la-search"></i>
-      </button>
-      <button mat-icon-button>
-        <i class="las la-sun"></i>
-      </button>
-      <button mat-icon-button>
-        <i class="las la-times"></i>
-      </button>
-    </mat-toolbar>
-
-    <div class="main-content">
-      <router-outlet></router-outlet>
-    </div>
-  </mat-drawer-content>
-</mat-drawer-container>
+</div>
