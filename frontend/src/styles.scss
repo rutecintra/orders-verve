@@ -1,0 +1,41 @@
+@import 'line-awesome/dist/line-awesome/css/line-awesome.min.css';
+
+.example-container {
+  height: 100vh;
+}
+
+mat-drawer {
+  width: 240px;
+  background-color: #343a40;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  background-color: #495057;
+  color: white;
+}
+
+mat-drawer a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  padding: 10px 20px;
+}
+
+mat-drawer a:hover {
+  background-color: #6c757d;
+}
+
+mat-drawer-content {
+  padding: 20px;
+}
+
+* {
+  font-family: 'Poppins', sans-serif;
+}

@@ -27,7 +27,9 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/custom-theme.scss",
+              "src/styles.scss",
+              "node_modules/line-awesome/dist/line-awesome/css/line-awesome.min.css"
             ],
             "scripts": [],
             "server": "src/main.server.ts",
@@ -90,7 +92,7 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           }

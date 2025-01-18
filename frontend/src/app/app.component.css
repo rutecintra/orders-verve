@@ -1,0 +1,26 @@
+.example-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  mat-drawer {
+    width: 240px;
+    background-color: #343a40;
+    color: white;
+  }
+  
+  mat-drawer a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px 20px;
+  }
+  
+  mat-drawer a:hover {
+    background-color: #495057;
+  }
+  
+  mat-drawer-content {
+    padding: 20px;
+  }  

@@ -1,6 +1,37 @@
-<h1>Hello World!</h1>
-<nav>
-  <a routerLink="/">Home</a>
-  <a routerLink="/orders">Orders</a>
-</nav>
-<router-outlet></router-outlet>
+<mat-drawer-container class="example-container">
+  <!-- Sidebar -->
+  <mat-drawer #drawer mode="side" [opened]="isSidebarOpen">
+    <div class="sidebar-header">
+      <button mat-icon-button (click)="toggleSidebar()">
+        @if (isSidebarOpen) {
+          <i class="las la-chevron-left"></i> <!-- Ícone de seta para a esquerda -->
+        } @else {
+          <i class="las la-bars"></i> <!-- Ícone de menu -->
+        }
+      </button>
+      @if (isSidebarOpen) {
+        <h3><link rel="icon" type="image/x-icon" href="logo-branco.svg"></h3>
+      }
+    </div>
+    @if (isSidebarOpen) {
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a routerLink="/dashboard" class="nav-link"><i class="las la-tachometer-alt"></i> Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/orders" class="nav-link"><i class="las la-box"></i> Orders</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/settings" class="nav-link"><i class="las la-cog"></i> Settings</a>
+        </li>
+      </ul>
+    }
+  </mat-drawer>
+
+  <!-- Main Content -->
+  <mat-drawer-content>
+    <div class="main-content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>
