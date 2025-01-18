@@ -1,15 +1,45 @@
 @import 'line-awesome/dist/line-awesome/css/line-awesome.min.css';
 
-.example-container {
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  margin: 0;
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 400;
+}
+
+h1 {
+  font-size: 30px;
+  line-height: 50px;
+  font-weight: 800;
+}
+
+.logo {
+  max-width: 100%;
+  height: auto;
+  width: 90px;
+  display: block;
+  margin: 0 auto;
+  margin-right: 10px;
+}
+
+.sidebar-container {
   height: 100vh;
+  width: auto;
 }
 
 mat-drawer {
   width: 240px;
-  background-color: #343a40;
+  background-color: #002d2b;
   color: white;
   display: flex;
   flex-direction: column;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3) !important;
 }
 
 .sidebar-header {
@@ -17,7 +47,7 @@ mat-drawer {
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem 1rem;
-  background-color: #495057;
+  background-color: #00968f;
   color: white;
 }
 
@@ -36,6 +66,43 @@ mat-drawer-content {
   padding: 20px;
 }
 
-* {
-  font-family: 'Poppins', sans-serif;
+.menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-top: 15px;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  color: white;
+  font-size: 14px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.menu-item i {
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.menu-item:hover {
+  background-color: #00968f;
+  border-radius: 5px;
+}
+
+.menu-link {
+  display: flex;
+  align-items: center;
+  color: white;
+  font-size: 14px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Estilização ao passar o mouse */
+.menu-link:hover {
+  background-color: #00968f !important;
+  border-radius: 5px;
 }
