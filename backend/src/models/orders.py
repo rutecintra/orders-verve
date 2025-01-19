@@ -1,11 +1,11 @@
 from django.db import models
 from .appmodel import AppModel
-from .orderstatus import Orderstatus
+from .orderstatus import OrderStatus
 from .integrations import Integrations
 from .customers import Customers
 
 class Orders(AppModel):
-    status_id = models.ForeignKey(Orderstatus, on_delete=models.CASCADE)
+    status_id = models.ForeignKey(OrderStatus, on_delete=models.CASCADE)
     marketplacestatus = models.CharField(max_length=100, null=True, blank=True)
     integrationstatus = models.CharField(max_length=100, null=True, blank=True)
     paymentdate = models.DateTimeField(auto_now_add=False)

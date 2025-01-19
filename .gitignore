@@ -1,0 +1,50 @@
+# Ignore arquivos e diretórios do ambiente virtual
+venv/
+.env
+*.env
+
+# Arquivos de cache e temporários do Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.swp
+*.swo
+
+# Logs e arquivos temporários
+*.log
+*.out
+*.pid
+*.lock
+*.db
+.DS_Store
+db.sqlite3
+
+# Configurações do editor/IDE
+.vscode/
+.idea/
+*.iml
+
+# Arquivos gerados automaticamente
+*.bak
+*.tmp
+*.orig
+*.log
+
+# Arquivos de cache do Django
+*.sqlite3
+*.py[cod]
+*$py.class
+
+# Arquivos estáticos e de mídia (gerados em tempo de execução)
+staticfiles/
+media/
+static/
+node_modules/
+
+# Dependências Python
+Pipfile
+Pipfile.lock
+
+# Arquivos relacionados ao sistema operacional
+Thumbs.db
