@@ -1,23 +1,111 @@
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 1rem;
-  }
-  
-  th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-  }
-  
-  th {
-    background-color: #f4f4f4;
-  }
-  
-  input {
-    margin-top: 1rem;
-    padding: 0.5rem;
-    width: 100%;
-    max-width: 300px;
-    box-sizing: border-box;
-  }  
+.orders-container {
+  margin: 20px;
+}
+
+.las {
+  font-size: 22px;
+}
+
+.page-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 16px;
+}
+
+.search-field {
+  width: 1000px;
+}
+
+.search-options {
+  width: 150px;
+}
+
+.search-container button {
+  height: 55px;
+  width: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #002d2b;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: -20px;
+}
+
+.search-container button i {
+  min-width: 30px;
+}
+
+.search-container button:hover {
+  background-color: #00968f;
+}
+
+.results-container {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.results-container * {
+  background-color: transparent;
+}
+
+.status-badge {
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.status-badge.awaiting {
+  background-color: #e0e7ff;
+  color: #4f46e5;
+}
+
+.status-badge.shipped {
+  background-color: #d6d1fa;
+  color: #220596;
+}
+
+.status-badge.canceled {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+
+.status-badge.delivered {
+  background-color: #d1fae5;
+  color: #059669;
+}
+
+.mat-paginator {
+  background-color: #f9f9f9;
+  margin-top: 10px;
+}
+
+td.mat-cell div {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.clickable-row {
+  cursor: pointer; /* Altera o cursor para indicar clique */
+  transition: background-color 0.3s ease;
+}
+
+.clickable-row:hover {
+  background-color: rgba(0, 123, 255, 0.1); /* Adiciona um leve fundo ao passar o mouse */
+}

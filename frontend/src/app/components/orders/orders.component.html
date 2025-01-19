@@ -1,48 +1,88 @@
-<div>
-    <h1>Orders</h1>
-    <div class="row mb-3">
-      <div class="col">
-        <input type="text" class="form-control" placeholder="Search Order ID" />
-      </div>
-      <div class="col">
-        <select class="form-select">
-          <option value="">All</option>
-          <option value="Awaiting shipment">Awaiting shipment</option>
-          <option value="Canceled">Canceled</option>
-        </select>
-      </div>
+<div class="orders-container">
+  <!-- Title -->
+  <div class="filters-header">
+    <h1>Pedidos</h1>
+
+    <!-- Filters -->
+    <div class="search-container">
+      <mat-form-field appearance="outline" class="search-options">
+        <mat-label>Filter by</mat-label>
+        <mat-select [(ngModel)]="searchFilter">
+          <mat-option value="orderId">Order ID</mat-option>
+          <mat-option value="status">Status</mat-option>
+          <mat-option value="item">Item</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="search-field">
+        <mat-label>Search</mat-label>
+        <input
+          matInput
+          placeholder="Enter search term"
+          [(ngModel)]="searchTerm"
+          (keyup.enter)="applyAdvancedFilter()" />
+      </mat-form-field>
+      <button mat-icon-button color="primary" (click)="applyAdvancedFilter()">
+        <i class="las la-search"></i>
+      </button>
     </div>
-  
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Order ID</th>
-          <th>Status</th>
-          <th>Items</th>
-          <th>Quantity</th>
-          <th>Total Amount</th>
-          <th>Shipping Deadline</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (order of orders; track order.id) {
-          <tr>
-            <td>{{ order.id }}</td>
-            <td>
-              <span [ngClass]="{'badge bg-warning': order.status === 'Awaiting shipment', 'badge bg-danger': order.status === 'Canceled'}">
-                {{ order.status }}
-              </span>
-            </td>
-            <td>{{ order.items }}</td>
-            <td>{{ order.quantity }}</td>
-            <td>{{ order.total | currency }}</td>
-            <td>{{ order.shippingDeadline | date: 'short' }}</td>
-          </tr>
-        } @empty {
-          <tr>
-            <td colspan="6" class="text-center">No orders found.</td>
-          </tr>
-        }
-      </tbody>
+
+  <!-- Table -->
+  <div class="results-container">
+    <table mat-table [dataSource]="filteredData" class="mat-table">
+      <!-- Order ID Column -->
+      <ng-container matColumnDef="orderId">
+        <th mat-header-cell *matHeaderCellDef> Order ID </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.orderId}}
+        </td>
+      </ng-container>
+
+      <!-- Status Column -->
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let element"> 
+          <span class="status-badge" [ngClass]="element.status.toLowerCase()">
+            {{element.status}}
+          </span>
+        </td>
+      </ng-container>
+
+      <!-- Items Column -->
+      <ng-container matColumnDef="items">
+        <th mat-header-cell *matHeaderCellDef> Items </th>
+        <td mat-cell *matCellDef="let element">
+          @for (item of element.items; track item.name) {
+            <div>{{ item.name }}</div>
+          }
+        </td>
+      </ng-container>    
+
+      <!-- Quantity Column -->
+      <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+        <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+      </ng-container>
+
+      <!-- Total Amount Column -->
+      <ng-container matColumnDef="totalAmount">
+        <th mat-header-cell *matHeaderCellDef> Total </th>
+        <td mat-cell *matCellDef="let element"> {{element.totalAmount | currency}} </td>
+      </ng-container>
+
+      <!-- Shipping Deadline Column -->
+      <ng-container matColumnDef="shippingDeadline">
+        <th mat-header-cell *matHeaderCellDef> Shipping Deadline </th>
+        <td mat-cell *matCellDef="let element"> {{element.shippingDeadline | date}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+        [routerLink]="'/orders/' + row.id" 
+        routerLinkActive="active-link" 
+        class="clickable-row"></tr>
     </table>
-  </div>  
+
+    <mat-paginator [pageSizeOptions]="[10, 20, 50, 100]" showFirstLastButtons>
+    </mat-paginator>
+  </div>
+</div>

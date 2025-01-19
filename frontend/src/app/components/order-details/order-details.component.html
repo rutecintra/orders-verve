@@ -1,0 +1,58 @@
+<div class="order-details-container">
+    <a routerLink="/orders" class="back-link">
+      <i class="las la-arrow-left"></i> Back to Orders
+    </a>
+  
+    <h1>Order no. {{ order.orderId }} 
+      <span class="status-label">{{ order.status }}</span>
+    </h1>
+    <p class="created-date">Created on {{ order.createdDate | date:'MM/dd/yyyy, h:mm a' }}</p>
+  
+    <div class="summary-cards">
+      <div class="card">
+        <i class="las la-shopping-cart"></i>
+        <p>Total order amount</p>
+        <h3>${{ order.totalAmount | number:'1.2-2' }}</h3>
+      </div>
+      <div class="card">
+        <i class="las la-dollar-sign"></i>
+        <p>Commission fees</p>
+        <h3>${{ order.commissionFees | number:'1.2-2' }}</h3>
+      </div>
+      <div class="card">
+        <i class="las la-truck"></i>
+        <p>Shipping charges</p>
+        <h3>${{ order.shippingCharges | number:'1.2-2' }}</h3>
+      </div>
+    </div>
+  
+    <div class="shipment-details">
+      <h2><i class="las la-box"></i> Shipment 1: {{ order.status }}</h2>
+      <div class="shipment-item">
+        <i class="las la-file-pdf"></i>
+        <a href="{{ order.invoiceUrl }}" download>{{ order.invoiceName }}</a>
+      </div>
+      <div class="product">
+        <img src="{{ order.items[0].image }}" alt="{{ order.items[0].name }}">
+        <div>
+          <h3>{{ order.items[0].name }}</h3>
+          <p>Offer SKU: {{ order.items[0].sku }}</p>
+        </div>
+        <span>Quantity {{ order.items[0].quantity }}/{{ order.items[0].maxQuantity }}</span>
+      </div>
+    </div>
+  
+    <div class="payment-details">
+      <h2>Payment details</h2>
+      <p><strong>Product price:</strong> {{ order.totalAmount | currency }}</p>
+      <p><strong>Shipping charges:</strong> $0.00</p>
+      <p><strong>Total:</strong> {{ order.totalAmount | currency }}</p>
+    </div>
+  
+    <div class="shipping-details">
+      <h2>Shipping</h2>
+      <p><strong>Customer name:</strong> {{ order.customerName }}</p>
+      <p><strong>Customer language:</strong> {{ order.customerLanguage }}</p>
+      <p><strong>Shipping address:</strong> {{ order.shippingAddress }}</p>
+    </div>
+  </div>  
