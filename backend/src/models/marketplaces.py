@@ -2,10 +2,10 @@ from django.db import models
 from .appmodel import AppModel
 from .integrations import Integrations
 
-# order statuses linked to integrations
+# sales channel
 
-class OrderStatus(AppModel):
+class Marketplaces(AppModel):
     integration_id = models.ForeignKey(Integrations, on_delete=models.CASCADE)
 
     class Meta:
-        db_table = 'orderstatus'
+        db_table = 'marketplaces'

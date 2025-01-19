@@ -1,5 +1,6 @@
 from .appmodel import AppModel
-from .customers import Customer
-from .integrations import Integration
-from .orders import Orders
-from .orderstatus import OrderStatus
+from .customers import Customers
+from .invoices import Invoices
+from .ordershippings import OrderShippings
+from .addresses import Addresses
+from .relationships import OrdersOrderShippings, OrderProductsOrderShippings
