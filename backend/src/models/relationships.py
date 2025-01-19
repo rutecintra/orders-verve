@@ -8,21 +8,21 @@ class OrdersOrderShippings(RelationshipModel):
     class Meta:
         db_table = 'orders_ordershippings'
 
-class OrderProducts_OrderShippings(RelationshipModel):
+class OrderProductsOrderShippings(RelationshipModel):
     _out = models.ForeignKey('orderproducts.OrderProducts', on_delete=models.CASCADE)
     _in = models.ForeignKey('ordershippings.OrderShippings', on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'ordersproducts_ordershippings'
 
-class Products_Categories(RelationshipModel):
+class ProductsCategories(RelationshipModel):
     _out = models.ForeignKey('products.Products', on_delete=models.CASCADE)
     _in = models.ForeignKey('categories.Categories', on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'products_categories'
 
-class Products_Logistics(RelationshipModel):
+class ProductsLogistics(RelationshipModel):
     _out = models.ForeignKey('products.Products', on_delete=models.CASCADE)
     _in = models.ForeignKey('logistics.Logistics', on_delete=models.CASCADE)
 
