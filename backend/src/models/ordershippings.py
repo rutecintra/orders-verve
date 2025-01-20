@@ -8,7 +8,7 @@ class OrderShippings(AppModel):
     shippingprice = models.FloatField()
     estimateddate = models.DateField()
     deliverydate = models.DateField()
-    logistic_id = models.ForeignKey(Logistics, on_delete=models.CASCADE)
+    logistics = models.ForeignKey(Logistics, on_delete=models.CASCADE)
     tracking = models.CharField(max_length=255)
     tracking_url = models.CharField(max_length=255)
     zonecode = models.CharField(max_length=50)

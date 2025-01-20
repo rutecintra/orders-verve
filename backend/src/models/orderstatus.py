@@ -5,7 +5,7 @@ from .integrations import Integrations
 # order statuses linked to integrations
 
 class OrderStatus(AppModel):
-    integration_id = models.ForeignKey(Integrations, on_delete=models.CASCADE)
+    integrations = models.ForeignKey(Integrations, on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'orderstatus'

@@ -15,8 +15,8 @@ class Addresses(AppModel):
     street_2 = models.CharField(max_length=255, null=True, blank=True)
     street_3 = models.CharField(max_length=255, null=True, blank=True)
     zipcode = models.CharField(max_length=50)
-    ordershipping_id = models.ForeignKey(OrderShippings, on_delete=models.CASCADE)
-    invoice_id = models.ForeignKey(Invoices, on_delete=models.CASCADE)
+    ordershippings = models.ForeignKey(OrderShippings, on_delete=models.CASCADE)
+    invoices = models.ForeignKey(Invoices, on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'addresses'
