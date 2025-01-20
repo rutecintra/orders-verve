@@ -2,10 +2,10 @@ from django.db import models
 from .appmodel import AppModel
 from .integrations import Integrations
 
-# order statuses linked to integrations
+# intern order statuses
 
 class OrderStatus(AppModel):
-    integrations = models.ForeignKey(Integrations, on_delete=models.CASCADE)
+    suspend = models.BooleanField(default=False)
 
     class Meta:
         db_table = 'orderstatus'

@@ -3,7 +3,7 @@ from .appmodel import AppModel
 from .orders import Orders
 
 class Invoices(AppModel):
-    accesskey = models.CharField(max_length=255)
+    accesskey = models.CharField(max_length=255, null=True, blank=True)
     orders = models.ForeignKey(Orders, on_delete=models.CASCADE)
 
     class Meta:

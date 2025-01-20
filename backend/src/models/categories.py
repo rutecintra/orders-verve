@@ -5,7 +5,7 @@ from .appmodel import AppModel
 # "level" indicates the position of the category in the tree
 
 class Categories(AppModel):
-    level = models.IntegerField()
+    level = models.IntegerField(null=True, blank=True)
     parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True)
 
     class Meta:

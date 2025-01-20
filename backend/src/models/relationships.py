@@ -17,6 +17,8 @@ class OrdersOrderShippings(RelationshipModel):
 class OrderProductsOrderShippings(RelationshipModel):
     orderproducts = models.ForeignKey(OrderProducts, on_delete=models.CASCADE)
     ordershippings = models.ForeignKey(OrderShippings, on_delete=models.CASCADE)
+    receiveddate  = models.DateField(null=True, blank=True)
+    shipped_date  = models.DateField(null=True, blank=True)
 
     class Meta:
         db_table = 'orderproducts_ordershippings'

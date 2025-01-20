@@ -5,19 +5,20 @@ from .integrations import Integrations
 from .customers import Customers
 
 class Orders(AppModel):
-    status = models.ForeignKey(OrderStatus, on_delete=models.CASCADE)
+    status = models.ForeignKey(OrderStatus, on_delete=models.CASCADE, null=True, blank=True)
     marketplacestatus = models.CharField(max_length=100, null=True, blank=True)
     integrationstatus = models.CharField(max_length=100, null=True, blank=True)
-    paymentdate = models.DateTimeField(auto_now_add=False)
+    paymentdate = models.DateTimeField(auto_now_add=False, null=True, blank=True)
     integrationorderid = models.CharField(max_length=100, null=False)
     integrations = models.ForeignKey(Integrations, on_delete=models.CASCADE)
     currency = models.CharField(max_length=100, null=True, blank=True)
     customers = models.ForeignKey(Customers, on_delete=models.CASCADE)
+    purchase_date = models.DateTimeField(null=True, blank=True)
     delivery_date = models.DateTimeField(null=True, blank=True)
     earliestdelivery_date = models.DateTimeField(null=True, blank=True)
     latestdelivery_date = models.DateTimeField(null=True, blank=True)
     totalprice = models.FloatField(null=False)
-    totalcomission = models.FloatField(null=False)
+    totalcomission = models.FloatField(null=True)
 
     class Meta:
         db_table = 'orders'

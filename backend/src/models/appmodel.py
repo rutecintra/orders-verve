@@ -3,7 +3,7 @@ from django.db import models
 # standard fields for tables
 
 class AppModel(models.Model):
-    title = models.CharField(max_length=256, null=False)
+    title = models.CharField(max_length=256, null=True)
     fulltitle = models.CharField(max_length=520, null=True, blank=True)
     slug = models.CharField(max_length=100, null=True, blank=True)
     icon = models.CharField(max_length=100, null=True, blank=True)
@@ -13,9 +13,9 @@ class AppModel(models.Model):
     order = models.IntegerField(null=True, blank=True)
     system = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    created_by = models.IntegerField(null=False)
+    created_by = models.IntegerField(null=True)
     updated_at = models.DateTimeField(auto_now=True)
-    updated_by = models.IntegerField(null=False)
+    updated_by = models.IntegerField(null=True, blank=True)
     deleted_at = models.DateTimeField(null=True, blank=True)
     deleted_by = models.IntegerField(null=True, blank=True)
 
