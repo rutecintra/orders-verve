@@ -15,27 +15,6 @@ from src.models.relationships import OrdersOrderShippings
 API_URL = "https://tiendamiaus-prod.mirakl.net/api/orders"
 API_KEY = "4745391d-0b7c-4db6-b75c-c1731af15c60"
 
-def process_customer(customer_data):
-    return Customers.objects.get_or_create(
-        integrationcustomerid=customer_data.get('customer_id'),
-        defaults={
-            'firstname': customer_data.get('firstname', ''),
-            'lastname': customer_data.get('lastname', ''),
-        }
-    )[0]
-
-def process_order(order, customer, integration):
-    return Orders.objects.update_or_create(
-        integrationorderid=order.get('order_id'),
-        defaults={
-            'title': order.get('commercial_id', ''),
-            'integration': integration,
-            'customer': customer,
-            'currency': order.get('currency_iso_code', ''),
-            'purchase_date': parse_datetime(order.get('created_date')),
-        }
-    )[0]
-
 
 def fetch_orders_from_api():
     headers = {
