@@ -8,9 +8,6 @@ from integrations.models import Integrations
 from logistics.models import Logistics
 from relationships.models import OrderProductsOrderShippings, OrdersOrderShippings
 
-API_URL = "https://tiendamiaus-prod.mirakl.net/api/orders"
-API_KEY = "4745391d-0b7c-4db6-b75c-c1731af15c60"
-
 def get_credentials():
 
     try:
