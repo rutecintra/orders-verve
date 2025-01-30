@@ -7,7 +7,7 @@ from .database_service import (
     create_order,
     create_order_products
 )
-from .mapping import MAPPING
+from .mapping import MAPPING, map_fields
 from src.integrations.models import Integrations
 from src.orders.models import Orders
 

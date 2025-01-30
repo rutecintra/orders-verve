@@ -61,12 +61,7 @@ MAPPING = {
 
 
 def map_fields(api_data, mapping):
-    mapped_data = {
-        "order": {},
-        "customer": {},
-        "ordershipping": {},
-        "orderproduct": {}
-    }
+    mapped_data = {}
 
     for api_field, db_field in mapping.items():
         keys = api_field.split(".")
@@ -74,23 +69,23 @@ def map_fields(api_data, mapping):
 
         try:
             for key in keys:
-                if "[" in key and "]" in key:
+                if "[]" in key:
+                    key = key.replace("[]", "")
+                    value = [map_fields(item, {api_field.replace("[]", ""): db_field}) for item in value.get(key, [])]
+                elif "[" in key and "]" in key:
                     base_key, index = key.split("[")
                     index = int(index.replace("]", ""))
                     value = value.get(base_key, [])[index] if isinstance(value.get(base_key, []), list) else None
                 else:
                     value = value.get(key, None)
-        except (IndexError, AttributeError):
-            value = None
 
-        if db_field in ["integrationorderid", "title", "integrationstatus", "currency", "purchase_date",
-                        "latestdelivery_date", "earliestdelivery_date", "totalprice", "totalcomission"]:
-            mapped_data["order"][db_field] = value
-        elif db_field in ["integrationcustomerid", "firstname", "lastname"]:
-            mapped_data["customer"][db_field] = value
-        elif db_field in ["carriercode", "tracking", "tracking_url", "shippingprice"]:
-            mapped_data["ordershipping"][db_field] = value
-        elif db_field in ["sku", "price", "quantity", "image1"]:
-            mapped_data["orderproduct"][db_field] = value
+            if isinstance(value, type(None)):
+                if "price" in db_field or "commission" in db_field or "quantity" in db_field:
+                    value = 0.0
+
+        except (IndexError, AttributeError, ValueError):
+            value = 0.0
+
+        mapped_data[db_field] = value
 
     return mapped_data
