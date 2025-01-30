@@ -17,7 +17,7 @@ class TiendamiausService(BaseIntegrationService):
         super().__init__("Tiendamiaus (Mirakl)")
 
     def get_orders(self):
-        orders_data = self.get("orders")
+        orders_data = self.get("orders", params={'paginate': 'false'})
         if not orders_data:
             return
 

@@ -24,7 +24,7 @@ class BaseIntegrationService:
         except Integrations.DoesNotExist:
             return None
 
-    def get(self, endpoint):
+    def get(self, endpoint, params=None):
         """Faz uma requisição GET para a API da integração"""
         if not self.api_key or not self.api_url:
             logging.error("API Key ou URL não definida.")
@@ -32,7 +32,7 @@ class BaseIntegrationService:
 
         headers = {"Authorization": self.api_key}
         try:
-            response = requests.get(f"{self.api_url}/{endpoint}", headers=headers)
+            response = requests.get(f"{self.api_url}/api/{endpoint}", headers=headers, params=params)
             response.raise_for_status()
             return response.json()
         except requests.exceptions.RequestException as e:
@@ -47,7 +47,7 @@ class BaseIntegrationService:
 
         headers = {"Authorization": self.api_key, "Content-Type": "application/json"}
         try:
-            response = requests.put(f"{self.api_url}/{endpoint}", json=data, headers=headers)
+            response = requests.put(f"{self.api_url}/api/{endpoint}", json=data, headers=headers)
             response.raise_for_status()
             return response.json()
         except requests.exceptions.RequestException as e:

@@ -49,9 +49,11 @@ def create_ordershipping(shipping_data):
         defaults={'title': shipping_data.get('shipping_company', '')}
     )
 
+    estimated_date = parse_datetime(shipping_data.get('shipping_deadline')) if isinstance(shipping_data.get('shipping_deadline'), str) else None
+
     return OrderShippings.objects.create(
         shippingprice=shipping_data.get('shipping_price', 0.0),
-        estimateddate=parse_datetime(shipping_data.get('shipping_deadline')),
+        estimateddate=estimated_date,
         logistics=logistics,
         tracking=shipping_data.get('shipping_tracking', ''),
         tracking_url=shipping_data.get('shipping_tracking_url', ''),
