@@ -1,22 +1,42 @@
 import requests
 import logging
 from django.utils.dateparse import parse_datetime
-from src.models.orders import Orders
-from src.models.customers import Customers
-from src.models.addresses import Addresses
-from src.models.integrations import Integrations
-from src.models.ordershippings import OrderShippings
-from src.models.logistics import Logistics
-from src.models.orderproducts import OrderProducts
-from src.models.relationships import OrderProductsOrderShippings
-from src.models.productimages import ProductImages
-from src.models.relationships import OrdersOrderShippings
+from orders.models import Orders, OrderShippings, OrderProducts
+from customers.models import Customers
+from addresses.models import Addresses
+from integrations.models import Integrations
+from logistics.models import Logistics
+from relationships.models import OrderProductsOrderShippings, OrdersOrderShippings
 
 API_URL = "https://tiendamiaus-prod.mirakl.net/api/orders"
 API_KEY = "4745391d-0b7c-4db6-b75c-c1731af15c60"
 
+def get_credentials():
 
-def fetch_orders_from_api():
+    try:
+        integration = Integrations.objects.get(id=1)
+
+        return {
+            "api_key": integration.apikey,
+            "api_url": integration.apiurl
+        }
+    
+    except Integrations.DoesNotExist:
+        return None
+
+
+def get_orders():
+
+    credentials = get_credentials()
+
+    if not credentials:
+
+        logging.error("Erro: Não foi possível recuperar as credenciais da API.")
+        return
+    
+    API_URL = credentials["api_url"]
+    API_KEY = credentials["api_key"]
+
     headers = {
         'Authorization': API_KEY
     }
@@ -51,102 +71,6 @@ def fetch_orders_from_api():
             process_order_products(order.get('order_lines', []), order_instance, shipping_data)
 
             logging.info(f"Pedido {api_orderid} salvo com sucesso!")
-
-            # integration = Integrations.objects.get(title = 'Tiendamiaus (Mirakl)')
-            
-            # customer_data = order.get('customer', {})
-            # customer, created = Customers.objects.get_or_create(
-            #     integrationcustomerid=customer_data.get('customer_id'),
-            #     defaults = {
-            #         'firstname': customer_data.get('firstname', ''),
-            #         'lastname': customer_data.get('lastname', ''),
-            #     }
-            # )
-
-            # logistics, created = Logistics.objects.get_or_create(
-            #     carriercode = order.get('shipping_carrier_code'),
-            #     defaults = {
-            #         'title': order.get('shipping_company', 'shipping_carrier_code')
-            #     }
-            # )
-
-            # shipping_data = OrderShippings.objects.create(
-            #     shippingprice = order.get('shipping_price'),
-            #     estimateddate = parse_datetime(order.get('shipping_deadline')),
-            #     logistics = logistics,
-            #     tracking = order.get('shipping_tracking', ''),
-            #     tracking_url = order.get('shipping_tracking_url', ''),
-            #     zonecode = order.get('shipping_zone_code', ''),
-            # )
-
-            # billing_address_data = order.get('billing_address', {})
-            # Addresses.objects.create(
-            #     street_1 = billing_address_data.get('street_1', ''),
-            #     street_2 = billing_address_data.get('street_2', ''),
-            #     zipcode = billing_address_data.get('zip_code'),
-            #     city = billing_address_data.get('city'),
-            #     country = billing_address_data.get('country'),
-            #     state = billing_address_data.get('state'),
-            #     ordershippings = shipping_data
-            # )
-
-            # shipping_address_data = order.get('shipping_address', {})
-            # Addresses.objects.create(
-            #     street_1 = shipping_address_data.get('street_1', ''),
-            #     street_2 = shipping_address_data.get('street_2', ''),
-            #     zipcode = shipping_address_data.get('zip_code'),
-            #     city = shipping_address_data.get('city'),
-            #     country = shipping_address_data.get('country'),
-            #     state = shipping_address_data.get('state')
-            # )
-
-            # order_data = Orders.objects.update_or_create(
-            #     integrationorderid = order.get('order_id'),
-            #     defaults={
-            #         'title': order.get('commercial_id', ''),
-            #         'integrationstatus': order.get('order_state'),
-            #         'integrationorderid': order.get('order_id'),
-            #         'integrations_id': integration,
-            #         'currency': order.get('currency_iso_code', ''),
-            #         'customer_id': customer,
-            #         'purchase_date': parse_datetime(order.get('created_date')),
-            #         'delivery_date': parse_datetime(order['delivery_date'].get('latest')),
-            #         'earliestdelivery_date': parse_datetime(order['delivery_date'].get('earliest')),
-            #         'latestdelivery_date': parse_datetime(order['delivery_date'].get('latest')),
-            #         'totalprice': float(order.get('total_price', None)),
-            #         'totalcomission': float(order.get('total_commission', None))
-            #     }
-            # )
-
-            # products_data = order.get('order_lines', {})
-            # orderproduct = OrderProducts.objects.create(
-            #     title = products_data.get('product_title'),
-            #     integrationorderid = products_data.get('product_shop_sku'),
-            #     sku = products_data.get('product_sku'),
-            #     commission_fee = products_data.get('total_commission'),
-            #     price = float(products_data.get('price_unit')),
-            #     quantity = products_data.get('quantity'),
-            #     orders = order_data,
-            #     shippings = shipping_data
-            # )
-
-            # OrderProductsOrderShippings.objects.create(
-            #     orderproducts = orderproduct,
-            #     ordershippings = shipping_data,
-            #     receiveddate = products_data.get('received_date')
-            # )
-
-            # OrdersOrderShippings.objects.create(
-            #     orders = order_data,
-            #     ordershippings = shipping_data
-            # )
-
-            # OrdersOrderShippings.objects.create(
-            #     orders = order_data,
-            #     ordershippings = shipping_data
-            # )
-
-            # print(f"Pedido {order.get('commercial_id')} salvo com sucesso!")
 
     except requests.exceptions.RequestException as e:
         print(f"Erro ao buscar pedidos: {e}")

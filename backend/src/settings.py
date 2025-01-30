@@ -37,9 +37,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'src',
     'django_celery_beat',
     'rest_framework',
+    'addresses',
+    'orders',
+    'categories',
+    'customers',
+    'integrations',
+    'invoices',
+    'logistics',
+    'marketplaces',
+    'products',
+    'relationships',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [

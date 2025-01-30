@@ -47,3 +47,7 @@ Pipfile.lock
 
 # Arquivos relacionados ao sistema operacional
 Thumbs.db
+
+# Ignorar arquivos de migração do Django
+**/migrations/*
+!**/migrations/__init__.py
