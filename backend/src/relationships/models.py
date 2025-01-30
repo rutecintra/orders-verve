@@ -1,11 +1,11 @@
 from django.db import models
-from models.appmodel import RelationshipModel
-from orders.models import Orders
-from orders.models import OrderShippings
-from orders.models import OrderProducts
-from products.models import Products
-from categories.models import Categories
-from logistics.models import Logistics
+from src.models.appmodel import RelationshipModel
+from src.orders.models import Orders
+from src.orders.models import OrderShippings
+from src.orders.models import OrderProducts
+from src.products.models import Products
+from src.categories.models import Categories
+from src.logistics.models import Logistics
 
 class OrdersOrderShippings(RelationshipModel):
     orders = models.ForeignKey(Orders, on_delete=models.CASCADE)

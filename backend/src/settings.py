@@ -37,18 +37,23 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Aplication apps
+    'src.addresses',
+    'src.apiintegrations',
+    'src.orders',
+    'src.categories',
+    'src.customers',
+    'src.integrations',
+    'src.invoices',
+    'src.logistics',
+    'src.marketplaces',
+    'src.products',
+    'src.relationships',
+
+    # Celery and DRF
     'django_celery_beat',
     'rest_framework',
-    'addresses',
-    'orders',
-    'categories',
-    'customers',
-    'integrations',
-    'invoices',
-    'logistics',
-    'marketplaces',
-    'products',
-    'relationships',
     'drf_yasg',
 ]
 

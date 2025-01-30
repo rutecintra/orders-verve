@@ -1,9 +1,9 @@
 from django.db import models
-from models.appmodel import AppModel
-from products.models import Products
-from integrations.models import Integrations
-from customers.models import Customers
-from logistics.models import Logistics
+from src.models.appmodel import AppModel
+from src.products.models import Products
+from src.integrations.models import Integrations
+from src.customers.models import Customers
+from src.logistics.models import Logistics
 
 # products will be created per order, so the same SKU may be repeated
 

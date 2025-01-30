@@ -1,5 +1,5 @@
 from django.db import models
-from models.appmodel import AppModel
+from src.models.appmodel import AppModel
 
 # product categories
 # "level" indicates the position of the category in the tree

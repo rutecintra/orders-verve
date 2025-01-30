@@ -1,7 +1,7 @@
 from drf_yasg.utils import swagger_serializer_method
 from rest_framework import serializers
 from .models import Orders, OrderProducts, OrderShippings
-from relationships.models import OrderProductsOrderShippings, OrdersOrderShippings
+from src.relationships.models import OrderProductsOrderShippings, OrdersOrderShippings
 
 class OrderProductsSerializer(serializers.ModelSerializer):
     shippings = serializers.SerializerMethodField()

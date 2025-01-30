@@ -1,6 +1,6 @@
 from django.db import models
-from models.appmodel import AppModel
-from integrations.models import Integrations
+from src.models.appmodel import AppModel
+from src.integrations.models import Integrations
 
 # sales channel
 

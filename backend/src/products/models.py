@@ -1,6 +1,6 @@
 from django.db import models
-from models.appmodel import AppModel
-from marketplaces.models import Marketplaces
+from src.models.appmodel import AppModel
+from src.marketplaces.models import Marketplaces
 
 class Products(AppModel):
     sku = models.CharField(max_length=255)

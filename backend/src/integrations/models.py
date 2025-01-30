@@ -1,5 +1,5 @@
 from django.db import models
-from models.appmodel import AppModel
+from src.models.appmodel import AppModel
 
 class Integrations(AppModel):
     apikey = models.CharField(max_length=255, null=True, blank=True)

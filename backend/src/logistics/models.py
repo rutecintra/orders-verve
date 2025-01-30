@@ -1,5 +1,5 @@
 from django.db import models
-from models.appmodel import AppModel
+from src.models.appmodel import AppModel
 
 # carrier registration, in the future this table will be integrated with the freight table
 

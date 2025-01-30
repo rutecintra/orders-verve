@@ -1,7 +1,7 @@
 import requests
 import logging
 from django.utils.dateparse import parse_datetime
-from integrations.models import Integrations
+from src.integrations.models import Integrations
 
 class BaseIntegrationService:
     def __init__(self, integration_title):

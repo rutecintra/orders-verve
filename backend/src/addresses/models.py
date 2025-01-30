@@ -1,5 +1,5 @@
 from django.db import models
-from models.appmodel import AppModel
+from src.models.appmodel import AppModel
 
 # billing and shipping addresses
 # billing address: linked to invoice_id
