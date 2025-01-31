@@ -40,7 +40,7 @@ INSTALLED_APPS = [
 
     # Aplication apps
     'src.addresses',
-    'src.apiintegrations',
+    'src.miraklintegration',
     'src.orders',
     'src.categories',
     'src.customers',

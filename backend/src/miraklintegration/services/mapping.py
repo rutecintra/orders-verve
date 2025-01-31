@@ -6,6 +6,7 @@ MAPPING = {
         "order_state": "integrationstatus",
         "currency_iso_code": "currency",
         "created_date": "purchase_date",
+        "delivery_date.latest": "delivery_date",
         "delivery_date.latest": "latestdelivery_date",
         "delivery_date.earliest": "earliestdelivery_date",
         "total_price": "totalprice",
@@ -21,41 +22,67 @@ MAPPING = {
         "shipping_tracking": "tracking",
         "shipping_tracking_url": "tracking_url",
         "shipping_price": "shippingprice",
+        "shipping_zone_code": "zonecode",
+
+        # Addresses fields
+        "street_1": "street_1",
+        "street_2": "street_2",
+        "zip_code": "zipcode",
+        "city": "city",
+        "country": "country",
+        "state": "state",
 
         # Order Products fields
         "order_lines.product_sku": "sku",
+        "order_lines.product_title": "title",
         "order_lines.price_unit": "price",
+        "order_lines.commission_fee": "totalcomission",
         "order_lines.quantity": "quantity",
         "order_lines.product_medias[0].media_url": "image1",
+        "order_lines.commission_fee": "commission_fee",
+        "order_lines.received_date": "receiveddate",
     },
     "worten": {
         # Order fields
-        "id": "integrationorderid",
-        "reference": "title",
-        "status": "integrationstatus",
-        "currency": "currency",
-        "created_at": "purchase_date",
-        "expected_delivery.max": "latestdelivery_date",
-        "expected_delivery.min": "earliestdelivery_date",
-        "total_amount": "totalprice",
-        "commission_fee": "totalcomission",
+        "order_id": "integrationorderid",
+        "commercial_id": "title",
+        "order_state": "integrationstatus",
+        "currency_iso_code": "currency",
+        "created_date": "purchase_date",
+        "delivery_date.latest": "delivery_date",
+        "delivery_date.latest": "latestdelivery_date",
+        "delivery_date.earliest": "earliestdelivery_date",
+        "total_price": "totalprice",
+        "total_commission": "totalcomission",
 
         # Customer fields
-        "buyer.id": "integrationcustomerid",
-        "buyer.name": "firstname",
-        "buyer.surname": "lastname",
+        "customer.customer_id": "integrationcustomerid",
+        "customer.firstname": "firstname",
+        "customer.lastname": "lastname",
 
         # Shipping fields
-        "carrier": "carriercode",
-        "tracking_number": "tracking",
-        "tracking_link": "tracking_url",
-        "shipping_cost": "shippingprice",
+        "shipping_carrier_code": "carriercode",
+        "shipping_tracking": "tracking",
+        "shipping_tracking_url": "tracking_url",
+        "shipping_price": "shippingprice",
+        "shipping_zone_code": "zonecode",
+
+        # Addresses fields
+        "street_1": "street_1",
+        "street_2": "street_2",
+        "zip_code": "zipcode",
+        "city": "city",
+        "country": "country",
+        "state": "state",
 
         # Order Products fields
-        "items.sku": "sku",
-        "items.unit_price": "price",
-        "items.quantity": "quantity",
-        "items.images[0].url": "image1",
+        "order_lines[].product_sku": "sku",
+        "order_lines[].product_title": "title",
+        "order_lines[].price_unit": "price",
+        "order_lines[].commission_fee": "commission_fee",
+        "order_lines[].quantity": "quantity",
+        "order_lines[].product_medias[0].media_url": "image1",
+        "order_lines[].received_date": "receiveddate",
     }
 }
 

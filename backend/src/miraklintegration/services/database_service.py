@@ -79,7 +79,7 @@ def create_order_products(products_data, order_instance, shipping_instance, base
         orderproduct = OrderProducts.objects.create(
             title=product.get('title', ''),
             sku=product.get('sku', ''),
-            commission_fee=float(product.get('totalcomission', 0.0)),
+            commission_fee=float(product.get('commission_fee', 0.0)),
             price=float(product.get('price', 0.0)),
             quantity=int(product.get('quantity', 0)),
             orders=order_instance,
@@ -90,5 +90,5 @@ def create_order_products(products_data, order_instance, shipping_instance, base
         OrderProductsOrderShippings.objects.create(
             orderproducts=orderproduct,
             ordershippings=shipping_instance,
-            receiveddate=parse_datetime(product.get('received_date')) if product.get('received_date') else None
+            receiveddate=parse_datetime(product.get('receiveddate')) if product.get('receiveddate') else None
         )
