@@ -31,12 +31,7 @@
               "src/styles.scss",
               "node_modules/line-awesome/dist/line-awesome/css/line-awesome.min.css"
             ],
-            "scripts": [],
-            "server": "src/main.server.ts",
-            "outputMode": "server",
-            "ssr": {
-              "entry": "src/server.ts"
-            }
+            "scripts": []
           },
           "configurations": {
             "production": {
