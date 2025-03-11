@@ -11,6 +11,12 @@ class BaseIntegrationService:
 
         if not self.api_key or not self.api_url:
             logging.error(f"Error loading integration credentials: {integration_title}")
+        
+        self.headers = {
+            "Authorization": self.api_key,
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        }
 
     def get_credentials(self):
         try:
@@ -46,7 +52,15 @@ class BaseIntegrationService:
         return self.request("POST", endpoint, data=data)
 
     def put(self, endpoint, data):
-        return self.request("PUT", endpoint, data=data)
+        url = f"{self.base_url}/api/{endpoint}"
+        try:
+            response = requests.put(url, headers=self.headers, json=data)
+            response.raise_for_status()
+            logging.info(f"PUT {url} - Order updated!")
+            return response.json()
+        except requests.exceptions.RequestException as e:
+            logging.error(f"Error updating order {url}: {e}")
+            return None
 
     def delete(self, endpoint):
         return self.request("DELETE", endpoint)

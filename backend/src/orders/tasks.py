@@ -1,6 +1,6 @@
 from celery import shared_task
-from src.miraklintegration.services.tiendamiaus_service import TiendamiausService
-from src.miraklintegration.services.worten_service import WortenService
+from backend.src.tiendamiaus.services import TiendamiausService
+from backend.src.worten.services import WortenService
 import logging
 
 @shared_task

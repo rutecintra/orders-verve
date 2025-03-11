@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'src.marketplaces',
     'src.products',
     'src.relationships',
+    'src.tiendamiaus',
+    'src.worten',
 
     # Celery and DRF
     'django_celery_beat',

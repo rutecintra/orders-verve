@@ -1,13 +1,13 @@
 import logging
-from .base_service import BaseIntegrationService
-from .database_service import (
+from ..apiintegrations.services.base_service import BaseIntegrationService
+from ..apiintegrations.services.database_service import (
     create_customer,
     create_ordershipping,
     create_address,
     create_order,
     create_order_products
 )
-from .mapping import MAPPING, map_fields
+from ..apiintegrations.services.mapping import MAPPING, map_fields
 from src.integrations.models import Integrations
 from src.orders.models import Orders
 
@@ -64,3 +64,10 @@ class TiendamiausService(BaseIntegrationService):
 
             except Exception as e:
                 logging.error(f"Error processing order {order.get('order_id')}: {e}")
+
+    def update_order(self, order_data):
+        response = self.put("orders", {"orders": [order_data]})
+        if response:
+            logging.info(f"Order {order_data['order_id']} updated at Tiendamiaus successfully!")
+        else:
+            logging.error(f"Error updating order {order_data['order_id']} at Tiendamiaus")
