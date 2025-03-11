@@ -64,6 +64,11 @@ class WortenService(BaseIntegrationService):
             except Exception as e:
                 logging.error(f"Error processing order {order.get('order_id')}: {e}")
 
+    # verve > api: front > back > api > sucesso? > sql > front
+    # api > verve: job > back > sql > front
+
+    # apis de pedido: get e put
+
     def update_order(self, order_data):
         response = self.put("orders", {"orders": [order_data]})
         if response:
